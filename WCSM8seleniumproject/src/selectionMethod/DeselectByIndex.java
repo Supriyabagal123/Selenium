@@ -1,0 +1,44 @@
+package selectionMethod;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class DeselectByIndex {
+	public static void main(String[] args) throws InterruptedException {
+System.setProperty("webdriver.gecko.driver","./drivers/geckodriver.exe");
+		
+		WebDriver driver =new FirefoxDriver ();
+		driver.manage().window().maximize();
+		driver.get("file:///C:/Users/Supriya/Desktop/webelements/multiselectdropdown.html");
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		WebElement dropDown = driver.findElement(By.name("menu"));
+		Select sel = new Select(dropDown);
+		// to select multiple option
+		for (int i=0;i<=6;i++)
+		{
+			if (i%2==0) {
+			sel.selectByIndex(i);
+			Thread.sleep(2000);
+		}
+			else {
+				System.out.println("It's odd place");
+			}
+	}
+		//to deSelect multiple options 
+		for (int i=0;i<6;i++)
+		{
+			if (i%2==0)
+			{
+				sel.deselectByIndex(i);
+			}
+			else {
+				System.out.println("it's odd place");
+			}
+		}
+}
+}
